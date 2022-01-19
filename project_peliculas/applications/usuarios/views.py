@@ -26,7 +26,7 @@ class UserCreateView(APIView):
             password= passwd_hash,
         )
 
-        return HttpResponse(json.dumps({'message': "Usuario Creado"}), status=200)  
+        return HttpResponse(json.dumps({'message': "Usuario Creado", 'status': 200}), status=200)  
 
 class UserLoginApiView(APIView):
 
@@ -37,19 +37,20 @@ class UserLoginApiView(APIView):
         usuario= User.objects.filter(email= email)
 
         if len(usuario) ==0:
-            return HttpResponse(json.dumps({'Error': "El usuario no existe",}), status=200)  
+            return HttpResponse(json.dumps({'Error': "El usuario no existe", 'status': 200}), status=200)  
 
         else:
             verificate = check_password(str(request.data['password']),str(usuario[0].password))
 
             if verificate ==  True:
                 return HttpResponse(json.dumps({
+                                                'status': 200,
                                                 'username': str(usuario[0].username), 
                                                 'nombre': str(usuario[0].nombre), 
                                                 'email':str(usuario[0].email), 
                                                 'Acceso':True}), 
                                                 status=200)  
             else:
-                return HttpResponse(json.dumps({'Error': "La contraseña es invalida",}), status=200)       
+                return HttpResponse(json.dumps({'Error': "La contraseña es invalida", 'status': 400}), status=200)       
             
             

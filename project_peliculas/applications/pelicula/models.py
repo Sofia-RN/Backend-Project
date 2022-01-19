@@ -13,7 +13,7 @@ class Pelicula(TimeStampedModel):
     director = models.CharField('Director', max_length=100, blank=True, null=True)
     autores = models.CharField('Autores', max_length=120, blank=True, null=True)
     duracion = models.CharField('Duracion', max_length=100, blank=True, null=True)
-    imagen = models.TextField('Imagen', max_length=100, blank=True, null=True) #modificar luego
+    imagen = models.CharField('Imagen', max_length=100, blank=True, null=True) #modificar luego
     
     class Meta:
         verbose_name = 'Pelicula'
