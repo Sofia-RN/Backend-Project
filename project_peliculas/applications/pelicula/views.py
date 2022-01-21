@@ -24,7 +24,7 @@ class PeliculaBuscarApiView(ListAPIView):
         #Filtrar datos
         kword = self.kwargs['kword']
         return Pelicula.objects.filter(
-            Q(nombre__icontains=kword) | Q(rango__icontains=kword)
+            Q(nombre__icontains=kword) | Q(rango__icontains=kword) | Q(fecha__icontains=kword)
         )
 
 
